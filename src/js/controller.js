@@ -4,7 +4,6 @@ import recipeview from './view/recipeview.js';
 import searchView from './view/searchView.js';
 import resultView from './view/resultView.js';
 import bookmarksView from './view/bookmarksView.js';
-// import PaginationView from './view/paginationView.js';
 import paginationView from './view/paginationView.js';
 import AddRecipeView from './view/addRecipeView.js';
 
@@ -108,7 +107,7 @@ const controlBookmarks = function () {
 const controlAddRecipe = async function (newRecipe) {
   try {
     //show loading spinner
-    addRecipeView.renderSpinner();
+    AddRecipeView.renderSpinner();
 
     //upload the new recipe data
     await model.uploadRecipe(newRecipe);
@@ -118,7 +117,7 @@ const controlAddRecipe = async function (newRecipe) {
     recipeview.render(model.state.recipe);
 
     //SUCCESS MESSAGE
-    addRecipeView.renderMessage();
+    AddRecipeView.renderMessage();
 
     //render bookmark view
     bookmarksView.render(model.state.bookmarks);
@@ -128,11 +127,11 @@ const controlAddRecipe = async function (newRecipe) {
 
     //close form window
     setTimeout(function () {
-      addRecipeView.toggleWindow();
+      AddRecipeView.toggleWindow();
     }, MODAL_CLOSE_SEC * 1000);
   } catch (err) {
     console.error(err);
-    addRecipeView.renderError(err.message);
+    AddRecipeView.renderError(err.message);
   }
 };
 
